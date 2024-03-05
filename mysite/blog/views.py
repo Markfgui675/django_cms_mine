@@ -1,19 +1,31 @@
 from django.shortcuts import render
-from blog.models import BlogIndexPage
+from blog.models import BlogIndexPage, BlogPage
 
 # Create your views here.
 def index_blog(request):
 
-    artigos = BlogIndexPage.objects.all().order_by('-id')
-
-    print(artigos[0])
+    page = BlogIndexPage.objects.all().order_by('-id').first()
 
     context = {
-        'page':artigos
+        'page':page
     }
 
     return render(
         request,
         'blog/blog_index_page.html',
+        context=context
+    )
+
+
+def blog_page(request, id: int):
+    post = BlogPage.objects.filter(id=id).first()
+
+    context = {
+        'page':post
+    }
+
+    return render(
+        request,
+        'blog/blog_page.html',
         context=context
     )
