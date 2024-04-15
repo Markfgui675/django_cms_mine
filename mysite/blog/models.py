@@ -4,7 +4,7 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
-
+from wagtail.models import PageManager
 from wagtail.search import index
 
 class BlogIndexPage(Page):
@@ -14,7 +14,12 @@ class BlogIndexPage(Page):
         FieldPanel('intro')
     ]
 
+class BlogManager(Page):
+    def get_live(self):
+        return self.live()
+
 class BlogPage(Page):
+    objects = BlogManager()
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)

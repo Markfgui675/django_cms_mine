@@ -19,4 +19,8 @@ Delete the line below if you're just getting started and want to remove the welc
 {% endcomment %}
     {{page.body|richtext}}
 
+    {% for blog in page.get_children %}
+        <a href={% pageurl blog %}>Blog</a>
+    {% endfor %}
+
 {% endblock content %}
