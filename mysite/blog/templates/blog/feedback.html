@@ -13,6 +13,6 @@
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 
-    <p>{{page.slug}}</p>
+    <p><a href="{% url 'feedback' page.slug %}">Give a feedback</a></p>
 
 {% endblock %}

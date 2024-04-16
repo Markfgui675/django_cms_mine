@@ -14,12 +14,7 @@ class BlogIndexPage(Page):
         FieldPanel('intro')
     ]
 
-class BlogManager(Page):
-    def get_live(self):
-        return self.live()
-
 class BlogPage(Page):
-    objects = BlogManager()
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
@@ -34,3 +29,6 @@ class BlogPage(Page):
         FieldPanel('intro'),
         FieldPanel('body')
     ]
+
+    def get_context(self, request, *args, **kwargs):
+        return super().get_context(request, *args, **kwargs)
