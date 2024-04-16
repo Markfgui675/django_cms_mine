@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'blog',
     'feedback',
 	'django_filters',
+    'wagtailcalendar',
+    'wagtailfeedback',
 ]
 
 MIDDLEWARE = [

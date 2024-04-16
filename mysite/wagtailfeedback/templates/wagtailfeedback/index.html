@@ -1,0 +1,17 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}Feedbacks{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Feedbacks" icon="comment" %}
+
+    <div class="nice-padding">
+        <h1>Feedbacks</h1>
+    </div>
+{% endblock %}
