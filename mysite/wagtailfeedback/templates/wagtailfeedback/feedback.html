@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Feedback{% endblock title %}
+
+{% block content %}
+    <h1>Feedback da página {{page.title}}</h1>
+    
+    <form action="{{ form_action }}" method="POST", enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {{field}}
+            <p>{{field.help_text}}</p>
+            {{field.errors}}
+        {% endfor %}
+
+        {% if form.error %}
+            Há erro no formulário, por favor verifique eles e tente novamente
+        {% endif %}
+        
+        <br>
+        <div class="form-group">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+{% endblock %}

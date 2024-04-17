@@ -5,13 +5,16 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
-from blog import views
+from wagtailfeedback import views
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
+    path("feedback/<slug>/", views.feedback, name="feedback-page"),
+    path("feedback/<slug>/create", views.feedback_create, name="feedback-create"),
+    path("feedback/<slug>/success", views.feedback_success, name="feedback-success"),
 ]
 
 
