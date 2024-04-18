@@ -14,7 +14,6 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("feedback/<slug>/", views.feedback, name="feedback-page"),
     path("feedback/<slug>/create", views.feedback_create, name="feedback-create"),
-    path("feedback/<slug>/success", views.feedback_success, name="feedback-success"),
 ]
 
 

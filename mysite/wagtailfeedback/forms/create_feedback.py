@@ -7,12 +7,34 @@ class FeedbackcreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+    date = forms.DateField(
+        label='Data',
+        widget=forms.TextInput(
+            attrs={
+                'type':'date',
+            }
+        )
+    )
+
+    slug = forms.CharField(
+        required=False,
+        label='Slug',
+        widget=forms.TextInput(
+            attrs={
+                'class':'slug_hide',
+                'type':'text',
+                'value':''
+            }
+        )
+    )
+
     class Meta:
         model = Feedback
-        fields = [
-            'date', 'title', 'texto'
-        ]
+        fields = ['date', 'title', 'texto', 'slug']
         error_messages = {
+            'data':{
+                'invalid':'Inválido'
+            },
             'title':{
                 'required':'O feedback precisa ter um título',
                 'invalid':'O feedback precisa ter um título'
@@ -22,32 +44,26 @@ class FeedbackcreateForm(forms.ModelForm):
                 'invalid':'O feedback precisa ter uma descrição'
             }
         }
-        widgets = {
-            'date':forms.DateField(
-                widget=forms.DateInput(
-                    format='%d/%m/%Y',
-                    attrs={
-                        'id_for_label':'Data'
-                    }
-                ),
-                label='Data'
-            )
-        }
-    
+
     def clean_title(self):
         data = self.cleaned_data.get('title')
 
-        if len(data) > 0:
-            return data
-        
-        return ValidationError('O feedback precisa ter um título', code='invalid')
+        if len(data) <= 2:
+            raise ValidationError('O feedback precisa ter um título', code='invalid')
+
+        return data
 
     def clean_texto(self):
         data = self.cleaned_data.get('texto')
 
-        if len(data) > 0:
-            return data
-        
-        return ValidationError(
+        if len(data) < 0:
+            raise ValidationError(
             'O feedback precisa ter uma descrição', code='invalid'
         )
+
+        return data   
+
+    def clean_date(self):
+        data = self.cleaned_data.get('date')
+        return data
+    

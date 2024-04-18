@@ -1,12 +1,9 @@
 from django.db import models
-from datetime import date
 # Create your models here.
-from django.utils import timezone
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
-from django.contrib.auth.models import User
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)

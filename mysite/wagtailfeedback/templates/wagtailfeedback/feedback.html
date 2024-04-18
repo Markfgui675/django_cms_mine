@@ -3,10 +3,19 @@
 
 {% block title %}Feedback{% endblock title %}
 
+{% block extra_css %}
+    <style>
+        .slug_hide{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <h1>Feedback da página {{page.title}}</h1>
-    
-    <form action="{{ form_action }}" method="POST", enctype="multipart/form-data">
+    <label class="slug_hide" for="slug-hide"></label>
+    <input class="slug_hide" type="text" value="{{slug}}" id="slug-hide">
+    <form id="form" action="{{ form_action }}" method="POST", enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
             <label for="{{field.id_for_label}}">{{field.label}}</label>
@@ -24,5 +33,9 @@
             <button type="submit">Send</button>
         </div>
     </form>
+
+    {% block extra_js %}
+        <script src="../../static/mysite.js"></script>
+    {% endblock %}
 
 {% endblock %}
