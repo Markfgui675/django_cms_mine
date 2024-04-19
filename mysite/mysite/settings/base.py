@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'blog',
-    'feedback',
 	'django_filters',
     'wagtailcalendar',
     'wagtailfeedback',

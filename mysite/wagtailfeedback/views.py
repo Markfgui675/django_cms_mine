@@ -35,7 +35,7 @@ def feedback_create(request, slug):
 
     if form.is_valid():
         messages.success(request, 'Feedback')
-        data: FeedbackcreateForm = form.save(commit=False)
+        form.save()
         del(request.session['feedback_form_data'])
     
     return redirect('feedback-page', slug)

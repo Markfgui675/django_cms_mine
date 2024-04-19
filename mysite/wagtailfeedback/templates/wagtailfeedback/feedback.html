@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+{% load static %}
 
 {% block title %}Feedback{% endblock title %}
 
@@ -30,12 +31,12 @@
         
         <br>
         <div class="form-group">
-            <button type="submit">Send</button>
+            <button id="button" type="submit">Send</button>
         </div>
     </form>
 
     {% block extra_js %}
-        <script src="../../static/mysite.js"></script>
+        <script src="{% static "js/app.js" %}"></script>
     {% endblock %}
 
 {% endblock %}
