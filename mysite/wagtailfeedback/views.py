@@ -8,7 +8,7 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
 
-    f = Feedback.objects.all()
+    f = Feedback.objects.all().order_by('-id')
     context = {
         'f':f
     }
@@ -16,6 +16,20 @@ def index(request):
     return render(
         request, 'wagtailfeedback/index.html', context=context
     )
+
+
+def feedback_slug(request, slug):
+
+    f = Feedback.objects.filter(slug=slug).first()
+    p = BlogPage.objects.filter(slug=slug).first()
+    context = {
+        'f':f,
+        'id':p.id,
+    }
+    return render(
+        request, 'wagtailfeedback/feedback_slug.html', context=context
+    )
+
 
 def feedback(request, slug):
     page = BlogPage.objects.filter(slug=slug).first()

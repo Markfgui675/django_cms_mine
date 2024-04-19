@@ -19,7 +19,9 @@
     <form id="form" action="{{ form_action }}" method="POST", enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
-            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {% if field.label != 'Slug' and field.label != 'Data' %}
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {% endif %}
             {{field}}
             <p>{{field.help_text}}</p>
             {{field.errors}}

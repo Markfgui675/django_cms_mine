@@ -1,6 +1,7 @@
 from django import forms
 from blog.models import Feedback
 from django.core.exceptions import ValidationError
+from datetime import date
 
 class FeedbackcreateForm(forms.ModelForm):
 
@@ -8,9 +9,11 @@ class FeedbackcreateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
     date = forms.DateField(
+        initial=date.today,
         label='Data',
         widget=forms.TextInput(
             attrs={
+                'class':'slug_hide',
                 'type':'date',
             }
         )
