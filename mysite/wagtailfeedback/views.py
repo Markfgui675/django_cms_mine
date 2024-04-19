@@ -1,14 +1,20 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from blog.models import BlogPage
+from blog.models import BlogPage, Feedback
 from wagtailfeedback.forms.create_feedback import FeedbackcreateForm
 from django.contrib import messages
 
 # Create your views here.
 def index(request):
+
+    f = Feedback.objects.all()
+    context = {
+        'f':f
+    }
+
     return render(
-        request, 'wagtailfeedback/index.html'
+        request, 'wagtailfeedback/index.html', context=context
     )
 
 def feedback(request, slug):

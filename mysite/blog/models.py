@@ -36,3 +36,9 @@ class Feedback(models.Model):
     title = models.CharField('Título', max_length=150)
     texto = models.TextField('Descrição')
     slug = models.CharField('Slug', max_length=250)
+
+    def __str__(self) -> str:
+        return self.title
+    
+    def __repr__(self) -> str:
+        return self.title

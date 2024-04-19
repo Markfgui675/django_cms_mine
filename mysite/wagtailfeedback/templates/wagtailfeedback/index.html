@@ -13,5 +13,10 @@
 
     <div class="nice-padding">
         <h1>Feedbacks</h1>
+
+        {% for feedback in f %}
+            <h2>{{feedback.title}}</h2>
+        {% endfor %}
+
     </div>
 {% endblock %}
